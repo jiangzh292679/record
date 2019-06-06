@@ -1,0 +1,3 @@
+SpringSecurity构建Hello，演示基础环境构建，以前后端分离情况举例，请勿与一体化项目混淆
+
+1、初始化Springboot+SpringSecurity工程
