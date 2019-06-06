@@ -447,7 +447,13 @@ and()
 formLogin().loginProcessingUrl("/login").usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/index")
 ```
 
-其余内容都有注释了，HelloWorld我们就讲到这里了, 对应的代码大家可以看一下springsecurity/democode即可，tag为v1.0
+其余内容都有注释了，HelloWorld我们就讲到这里了<br/>
+
+---
+
+git地址：https://github.com/jiangzh292679/record/tree/master/springsecurity<br/>
+git代码问题：https://github.com/jiangzh292679/record/tree/master/springsecurity/democode<br/>
+helloworld tag：v1.0
 
 
 
