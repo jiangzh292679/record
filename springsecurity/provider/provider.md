@@ -5,7 +5,9 @@
 ## 1、AuthenticationProvider介绍
 #### 1.1 AuthenticationProvider是什么
 
-AuthenticationProvider是SpringSecurity依赖的用户认证实现，AuthenticationProvider可以提供多种实现，并且最终形成一个认证实现链路，只要这个链路中有一个认证正常，则表示认证成功
+AuthenticationProvider是SpringSecurity依赖的用户认证实现，AuthenticationProvider可以提供多种实现，并且最终形成一个认证实现链路，只要这个链路中有一个认证正常，则表示认证成功<br/>
+
+Spring Security 提供了很多此接口的实现，如 DaoAuthenticationProvider、LdapAuthenticationProvider、JaasAuthenticationProvider 等，列表中的 AuthenticationProvider 会依次对 Authentication 请求对象进行认证处理，如果认证通过则返回一个完全填充的 Authentication 对象，如果认证不通过则抛出一个异常（注意对抛出的异常有类型要求）或直接返回 null。如果列表中的所有 AuthenticationProvider 都返回 null，则 ProviderManager 会抛出 ProviderNotFoundException 异常；
 
 #### 1.2 AuthenticationProvider给我们提供了什么
 ```aidl
