@@ -1,15 +1,18 @@
 package com.jiangzh.springboot.springsecurity.democode.conf;
 
+import com.jiangzh.springboot.springsecurity.democode.provider.SimpleAuthProvider;
 import com.jiangzh.springboot.springsecurity.democode.service.AuthService;
 import com.jiangzh.springboot.springsecurity.democode.utils.CustomizeEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * @author : jiangzh
@@ -24,6 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   /** 权限Service */
   private final AuthService authService;
+  /** 提供第二种用户验证Provider */
+  private final SimpleAuthProvider simpleAuthProvider;
 
   /**
   * @Description: 构造方法，主要注入一些属性
@@ -33,19 +38,58 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   * @Date:
   */
   @Autowired
-  public SecurityConfig(AuthService authService) {
+  public SecurityConfig(AuthService authService,SimpleAuthProvider simpleAuthProvider) {
     this.authService = authService;
+    this.simpleAuthProvider = simpleAuthProvider;
   }
 
-  @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-    auth.userDetailsService(authService) // 获取待验证的对象【调用实现中的loadUserByUsername方法】
-        .passwordEncoder(passwordEncoder());//采用自定义加密算法
-  }
-
+  /**
+  * @Description: 提供自定义密码加密策略
+  * @Param: []
+  * @return: com.jiangzh.springboot.springsecurity.democode.utils.CustomizeEncoder
+  * @Author: jiangzh
+  * @Date: 2019/6/6
+  */
   @Bean
   public CustomizeEncoder passwordEncoder() {
     return new CustomizeEncoder();
+  }
+
+  /*
+    增加数据层获取用户信息
+   */
+  @Bean
+  DaoAuthenticationProvider daoAuthenticationProvider(){
+    DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+    daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+    daoAuthenticationProvider.setUserDetailsService(authService);
+    return daoAuthenticationProvider;
+  }
+
+
+  /**
+  * @Description: 提供默认UserDetailsService实现
+  * @Param: []
+  * @return: org.springframework.security.core.userdetails.UserDetailsService
+  * @Author: jiangzh
+  * @Date: 2019/6/6
+  */
+  @Override
+  protected UserDetailsService userDetailsService() {
+    return authService;
+  }
+
+
+  /**
+   * @Description: 配置多个Provider内容
+   * @Param: []
+   * @return: org.springframework.security.authentication.AuthenticationManager
+   * @Author: jiangzh
+   * @Date: 2019/6/6
+   */
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.authenticationProvider(simpleAuthProvider).authenticationProvider(daoAuthenticationProvider());
   }
 
   /**

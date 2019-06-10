@@ -1,3 +1,4 @@
-|更新内容|对应目录|内容描述|说明|
-|---|---|---|---|
-|HelloWorld|democode & helloworld|构建Springboot + SpringSecurity + SpringDataJPA环境|如需看代码，可以将tag修改为v1.0|
+|tag|内容描述|说明|
+|---|---|---|
+|v1.0|构建Springboot + SpringSecurity + SpringDataJPA环境|HelloWorld|
+|v2.0|完成多AuthenticationProvider认证实现|provider|
