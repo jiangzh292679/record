@@ -1,5 +1,8 @@
 > SpringSecurity构建Hello，演示基础环境构建，以前后端分离情况举例，请勿与一体化项目混淆
 
+SpringSecurity基本流程图
+![image-security-process]
+
 ## 1、环境构建
 #### 1.1 初始化Springboot+SpringSecurity工程【使用https://start.spring.io/】
 ![image-project-init]
@@ -464,3 +467,4 @@ helloworld tag：v1.0
 [image-project-dependencies_02]:https://github.com/jiangzh292679/record/raw/master/springsecurity/helloword/images/project_dependencies_02.png
 [image-security-login-page]:https://github.com/jiangzh292679/record/raw/master/springsecurity/helloword/images/security_login_page.png
 [image-security-login-success]:https://github.com/jiangzh292679/record/raw/master/springsecurity/helloword/images/security_login_success.png
+[image-security-process]:https://github.com/jiangzh292679/record/raw/master/springsecurity/helloword/images/springsecurity_process.png

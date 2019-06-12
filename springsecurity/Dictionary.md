@@ -7,3 +7,6 @@
 |AuthenticationProvider|提供具体认证的实现|tag:v2.0 path:democode.provider.SimpleAuthProvider|
 |Authentication|||
 |SecurityContextHolder|---|---|
+|RequestMatcher|---|---|
+|AbstractAuthenticationProcessingFilter|---|---|
+|HttpSecurity|---|---|
