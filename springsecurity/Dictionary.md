@@ -10,3 +10,4 @@
 |RequestMatcher|---|---|
 |AbstractAuthenticationProcessingFilter|---|---|
 |HttpSecurity|---|---|
+|AccessDeniedHandler|---|---|

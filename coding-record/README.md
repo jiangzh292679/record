@@ -8,7 +8,7 @@
 - 竞品范围划定
 - 竞品分析方式
 - 领域驱动设计介入
-    - 定义黑话【ubiquitous language】
+    - 定义黑话 [ubiquitous language](https://github.com/jiangzh292679/record/blob/master/coding-record/docs/domain_driven/ubiquitous%20language/README.md)
 
 
 # 产品设计阶段
